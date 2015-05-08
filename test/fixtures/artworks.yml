@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  title: MyString
+  artist: MyString
+  date: MyString
+  imageURL: MyString
+  width: 1
+  height: 1
+  xpos: 1
+  ypos: 1
+  space_id: 
+
+two:
+  type: 
+  title: MyString
+  artist: MyString
+  date: MyString
+  imageURL: MyString
+  width: 1
+  height: 1
+  xpos: 1
+  ypos: 1
+  space_id: 
