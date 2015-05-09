@@ -1,27 +1,3 @@
-var searchResults;
-var $resultsContainer = $('.results-container');
-$resultsContainer.css("height", window.innerHeight * 3 / 4);
-var $resultsReturn = $('#results-return');
-
-$(document).ajaxStart(function(){
-  $('#loading').css("visibility", "visible");
-})
-
-$(document).ajaxStop(function(){
-  $('#loading').css("visibility", "hidden");
-})
-
-$resultsReturn.on('click', function(){
-  $resultsReturn.css("visibility", "hidden")
-  $resultsContainer.html(searchResults);
-  var $resultsImages = $('.results-container img');
-  for (var i = 0; i < $resultsImages.length; i++) {
-    $resultsImages[i].addEventListener('click', function(){
-      metItemLookup(this.id);
-    });
-  };
-})
-
 function metCollectionSearch(searchTerm){
   var searchURL = 'http://scrapi.org/search/' + searchTerm;
   $.ajax({
@@ -35,16 +11,20 @@ function metCollectionSearch(searchTerm){
 
 function getMetResults(response){
   var items = response.collection.items;
+  console.log(items);
   $resultsContainer.html('');
   for (var i = 0; i < items.length; i++) {
-    var thumbURL = items[i]["image_thumb"];
-    var img = document.createElement('img');
-    img.src = thumbURL;
-    img.id = items[i]["id"];
-    $resultsContainer.append(img);
-    $('#' + img.id).on('click', function(){
-      metItemLookup(this.id);
-    });
+    var thumbURL = items[i].image_thumb;
+    if(!thumbURL.includes("NoImageAvailable")){
+      var img = document.createElement('img');
+      img.src = thumbURL;
+      img.id = items[i].id;
+      img.className = "thumb";
+      $resultsContainer.append(img);
+      $('#' + img.id).on('click', function(){
+        metItemLookup(this.id);
+      });
+    };
   };
   searchResults = $resultsContainer.html();
 };
@@ -57,7 +37,7 @@ function metItemLookup(metId){
     url: lookupURL
   }).done(function(response){
     var img = document.createElement('img');
-    var imgURL = response["currentImage"]["imageUrl"];
+    var imgURL = response.currentImage.imageUrl;
     img.src = imgURL;
     $resultsContainer.html(img);
     Draggable.create(img);
@@ -65,8 +45,9 @@ function metItemLookup(metId){
   });  
 };
 
-$('#art-search-button').on('click', function(){
+$('#met-search-button').on('click', function(){
   var searchTerm = $('#art-search-input').val();
+  artworkSource = 'met';
   $resultsReturn.css("visibility", "hidden");
   metCollectionSearch(searchTerm);
 });

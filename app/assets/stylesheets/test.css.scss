@@ -1,7 +1,17 @@
 .results-container{
   width: 100%;
   overflow: auto;
+  img.thumb{
+    width: 100px;
+    margin: 10px;
+  }
 }
 #results-return, #loading{
   visibility: hidden;
+}
+
+#loading{
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }
