@@ -5,12 +5,16 @@
     width: 100px;
     margin: 10px;
   }
+  img.lookup{
+    width: 50%;
+    margin: 10px 0 0 10px;
+  }
 }
-#results-return, #loading{
+.go-back-results, .loading{
   visibility: hidden;
 }
 
-#loading{
+.loading{
   position: absolute;
   left: 50%;
   top: 50%;

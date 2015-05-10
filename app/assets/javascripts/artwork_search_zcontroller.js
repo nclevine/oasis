@@ -1,0 +1,1 @@
+var artworkSearchView = new ArtworkSearchView();

@@ -1,7 +1,23 @@
-<h1 id='title'>Welcome to the Oasis!</h1>
-<input type='text' id='art-search-input'>
-<button id='met-search-button'>Search Met</button>
-<button id='vam-search-button'>Search V&A</button>
-<button id='results-return'>Go Back To Results</button>
-<div class='results-container'></div>
-<h2 id='loading'>LOADING</h2>
+<h1 id='title'>Welcome To Your Salon</h1>
+
+<div class='artwork-search-panel'>
+
+  <div class='artwork-search-form'>
+    <input type='text' class='art-search-input' placeholder='Artist, Location, Motif, Object, Keyword...'>
+    <select class='artwork-source'>
+      <option>Select A Source</option>
+      <option value='met'>Met Museum</option>
+      <option value='vam'>Victoria & Albert</option>
+      <option value='rijks'>Rijksmuseum</option>
+    </select>
+    <button class='artwork-search-button'>Find Artwork</button>
+    <button class='go-back-results'>Go Back To Results</button>
+  </div>
+
+  <div class='results-container'></div>
+  <div class='item-inspector'></div>
+
+  <div class='loading'>
+    <h2>LOADING</h2>
+  </div>
+</div>
