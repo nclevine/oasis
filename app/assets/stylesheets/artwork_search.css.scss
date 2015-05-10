@@ -5,11 +5,26 @@
     width: 100px;
     margin: 10px;
   }
+}
+
+.item-inspector{
+  visibility: hidden;
+  overflow: auto;
+  position: fixed;
+  width: 75%;
+  height: 70%;
+  left: 13%;
+  top: 20%;
+  background: white;
   img.lookup{
+    float: left;
     width: 50%;
-    margin: 10px 0 0 10px;
+  }
+  h2{
+    text-align: right;
   }
 }
+
 .go-back-results, .loading{
   visibility: hidden;
 }
