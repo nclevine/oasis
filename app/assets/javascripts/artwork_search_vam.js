@@ -49,13 +49,6 @@ function vamItemLookup(vamId){
       + "' data-museum='rijks' data-artist='" + artist
       + "' data-title='" + title
       + "' data-date='" + date + "'>");
-    $itemInspector.html($img);
-    var $itemInfo = $("<div class='item-info'></div>")
-    $itemInspector.append($itemInfo);
-    $itemInfo.append("<h2>Title: <span>" + title + "</span></h2>");
-    $itemInfo.append("<h2>Artist: <span>" + artist + "</span></h2>");
-    $itemInfo.append("<h2>Dated: <span>"+ date +"</span></h2>");
-    $backToResultsButton.css("visibility", "visible");
-    TweenMax.to($itemInspector, 0.3, {autoAlpha: 1});
+    loadImageInspector($img);
   });
 };  

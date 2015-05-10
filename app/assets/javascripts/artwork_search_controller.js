@@ -1,9 +1,9 @@
+var $artworkSearchPanel = $('.artwork-search-panel');
 var $searchTerm = $('.art-search-input');
 var $artworkSource = $('.artwork-source');
 var $searchButton = $('.artwork-search-button');
 var $resultsContainer = $('.results-container');
-var $itemInspector = $('.item-inspector');
-var $backToResultsButton = $('.go-back-results');
+var $imageInspector = $('.image-inspector');
 var $loading = $('.loading')
 var searchResults = '';
 
@@ -25,10 +25,31 @@ function artworkLookupAjaxSend(){
 };
 
 function artworkLookupAjaxComplete(){
-  var imgLoad = imagesLoaded($itemInspector);
+  var imgLoad = imagesLoaded($imageInspector);
   imgLoad.on('always', function(){
     $loading.css("visibility", "hidden");
   });
+};
+
+function loadImageInspector(image){
+  $imageInspector.html(image);
+  var $itemInfo = $("<div class='item-info'></div>")
+  $imageInspector.append($itemInfo);
+  $itemInfo.append("<h2>Title: <span>" + image.data("title") + "</span></h2>");
+  $itemInfo.append("<h2>Artist: <span>" + image.data("artist") + "</span></h2>");
+  $itemInfo.append("<h2>Dated: <span>"+ image.data("date") +"</span></h2>");
+  var $enterEditorButton = $("<button class='enter-artwork-editor'>Add To Your Salon</button>");
+  $enterEditorButton.on('click', function(){
+    enterArtworkEditor(image);
+  });
+  $itemInfo.append($enterEditorButton);
+  var $closeInspector = $("<button class='close-inspector'>Close</button>")
+  $closeInspector.on('click', function(){
+    TweenMax.to($imageInspector, 0.3, {autoAlpha: 0});
+    TweenMax.to($resultsContainer, 0.3, {opacity: 1});
+  })
+  $itemInfo.append($closeInspector);
+  TweenMax.to($imageInspector, 0.3, {autoAlpha: 1});
 };
 
 $searchButton.on('click', function(){
@@ -41,10 +62,4 @@ $searchButton.on('click', function(){
   } else if(source == 'rijks'){
     rijksCollectionSearch(searchTerm);
   };
-});
-
-$backToResultsButton.on('click', function(){
-  this.style.visibility = "hidden";
-  TweenMax.to($itemInspector, 0.3, {autoAlpha: 0});
-  TweenMax.to($resultsContainer, 0.3, {opacity: 1});
 });

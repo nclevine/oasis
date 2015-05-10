@@ -1,36 +1,49 @@
-.results-container{
-  width: 100%;
-  overflow: auto;
-  img.thumb{
-    width: 100px;
-    margin: 10px;
+.artwork-search-panel{
+  .art-search-input{
+    width: 250px;
+  }
+  .results-container{
+    width: 100%;
+    overflow: auto;
+    img.thumb{
+      width: 100px;
+      margin: 10px;
+    }
+  }
+  .image-inspector{
+    visibility: hidden;
+    overflow: auto;
+    position: fixed;
+    width: 75%;
+    height: 70%;
+    left: 13%;
+    top: 20%;
+    background: white;
+    img.lookup{
+      float: left;
+      width: 50%;
+    }
+    h2{
+      text-align: right;
+    }
+  }
+  .loading{
+    visibility: hidden;
+    position: fixed;
+    left: 45%;
+    top: 45%;
   }
 }
 
-.item-inspector{
-  visibility: hidden;
-  overflow: auto;
-  position: fixed;
-  width: 75%;
-  height: 70%;
-  left: 13%;
-  top: 20%;
-  background: white;
-  img.lookup{
-    float: left;
-    width: 50%;
-  }
-  h2{
-    text-align: right;
-  }
-}
-
-.go-back-results, .loading{
-  visibility: hidden;
-}
-
-.loading{
+.artwork-edit-panel{
   position: absolute;
-  left: 50%;
-  top: 50%;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  img{
+    height: 75%;
+  }
 }
+
