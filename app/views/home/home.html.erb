@@ -1,27 +1,9 @@
-<h1 id='title'>Welcome To Your Salon</h1>
+<h1 id='title'>Welcome To The Oasis</h1>
 
-<div class='artwork-search-panel'>
-  <div class='artwork-search-form'>
-    <input type='text' class='art-search-input' placeholder='Artist, Location, Motif, Object, Keyword...'>
-    <select class='artwork-source'>
-      <option>Select A Source</option>
-      <option value='met'>Met Museum</option>
-      <option value='vam'>Victoria & Albert</option>
-      <option value='rijks'>Rijksmuseum</option>
-    </select>
-    <button class='artwork-search-button'>Find Artwork</button>
-  </div>
-
-  <div class='results-container'></div>
-  <div class='image-inspector'></div>
-
-  <div class='loading'>
-    <h2>LOADING</h2>
-  </div>
-</div>
-
-<div class='artwork-edit-panel'>
-  <button class='return-to-search'>Return To Search</button>
-  <button class='enter-edit-mode'>Edit Mode</button>
-  <button class='exit-edit-mode'>Exit Edit Mode</button>
-</div>
+<% if !user_signed_in? %>
+  <%= link_to "Log In", new_user_session_path %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+<% else %>
+  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+  <h1><%= current_user.email %></h1>
+<% end %>

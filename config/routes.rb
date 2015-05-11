@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'home#home'
+  devise_for :users
+  resources :users
   resources :spaces
   resources :artworks
   resources :journals
