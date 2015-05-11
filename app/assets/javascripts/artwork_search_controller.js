@@ -40,7 +40,7 @@ function loadImageInspector(image){
   $itemInfo.append("<h2>Dated: <span>"+ image.data("date") +"</span></h2>");
   var $enterEditorButton = $("<button class='enter-artwork-editor'>Add To Your Salon</button>");
   $enterEditorButton.on('click', function(){
-    enterArtworkEditor(image);
+    addImageToSalon(image);
   });
   $itemInfo.append($enterEditorButton);
   var $closeInspector = $("<button class='close-inspector'>Close</button>")
