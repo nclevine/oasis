@@ -14,13 +14,13 @@ class ArtworksController < ApplicationController
   def create
     @space = current_user.space
     @artwork = @space.artworks.create(artwork_params)
-    render json: @card
+    render json: @artwork
   end
 
   def update
     @artwork = Artwork.find(params[:id])
     @artwork.update(artwork_params)
-    render json: @card
+    render json: @artwork
   end
 
   def destroy
@@ -31,6 +31,6 @@ class ArtworksController < ApplicationController
 
   private
   def artwork_params
-    params.require(:artwork).permit(:title, :artist, :date, :width, :height, :xpos, :ypos)
+    params.require(:artwork).permit(:source, :title, :artist, :date, :imageURL, :xpos, :ypos, :width, :height, :zIndex)
   end
 end

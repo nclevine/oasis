@@ -8,14 +8,18 @@ function addImageToSalon(image){
   $editableImage.toggleClass('lookup salon');
   $resizeContainer.append($editableImage);
   $artworkEditor.append($resizeContainer);
+  $resizeContainer.attr('data-saved', 'new');
   $resizeContainer.resizable({
     handles: "se",
     aspectRatio: true
   });
   $('.ui-resizable-handle').attr('data-clickable', true);
   $draggables.push(Draggable.create($resizeContainer, {
-    onClick: function(){
-      console.log(this);
+    onDragStartScope: $resizeContainer,
+    onDragStart: function(){
+      if(this.attr('data-saved') == 'saved'){
+        this.attr('data-saved', 'update');
+      };
     }
   }));
   loadEditorTools();
@@ -53,17 +57,30 @@ function exitEditMode(){
   };
 };
 
+var newId;
+
 function saveSalonWall(){
   artworkObjects = [];
   makeArtworkObjects();
   for (var i = artworkObjects.length - 1; i >= 0; i--) {
-    artworkObjects[i].save();
+    if(artworkObjects[i].saved == 'new'){
+      $draggables[i][0].target.setAttribute('data-saved', 'saved');
+      artworkObjects[i].save().done(function(response){
+        newId = response.id;
+      });
+    } else if(artworkObjects[i].saved == 'update'){
+      $draggables[i][0].target.setAttribute('data-saved', 'saved');
+      artworkObjects[i].update();
+    } else{
+      console.log('babys already saved');
+      console.log(artworkObjects[i]);
+    };
   };
 }
 
 function makeArtworkObjects(){
   for (var i = $draggables.length - 1; i >= 0; i--) {
-    var type = $draggables[i][0].target.firstElementChild.dataset.museum,
+    var source = $draggables[i][0].target.firstElementChild.dataset.museum,
       title = $draggables[i][0].target.firstElementChild.dataset.title,
       artist = $draggables[i][0].target.firstElementChild.dataset.artist,
       date = $draggables[i][0].target.firstElementChild.dataset.date,
@@ -72,13 +89,16 @@ function makeArtworkObjects(){
       ypos = $draggables[i][0].y,
       width = $draggables[i][0].target.firstElementChild.width,
       height = $draggables[i][0].target.firstElementChild.height,
-      artwork = new Artwork(type, title, artist, date, imageURL, xpos, ypos, width, height);
+      zIndex = $draggables[i][0].target.style.zIndex,
+      saved = $draggables[i][0].target.dataset.saved,
+      arID = $draggables[i][0].target.dataset.arID,
+      artwork = new Artwork(source, title, artist, date, imageURL, xpos, ypos, width, height, zIndex, saved, arID);
     artworkObjects.push(artwork);
   };
 }
 
-function Artwork(type, title, artist, date, imageURL, xpos, ypos, width, height){
-  this.type = type;
+function Artwork(source, title, artist, date, imageURL, xpos, ypos, width, height, zIndex, saved, arID){
+  this.source = source;
   this.title = title;
   this.artist = artist;
   this.date = date;
@@ -87,13 +107,16 @@ function Artwork(type, title, artist, date, imageURL, xpos, ypos, width, height)
   this.ypos = ypos;
   this.width = width;
   this.height = height;
+  this.zIndex = zIndex;
+  this.saved = saved;
+  this.arID = arID;
 };
 Artwork.prototype = {
   save: function(){
-    $.ajax({
+    return $.ajax({
       method: 'post',
       data: {artwork: {
-        type: this.type,
+        source: this.source,
         title: this.title,
         artist: this.artist,
         date: this.date,
@@ -101,12 +124,33 @@ Artwork.prototype = {
         xpos: this.xpos,
         ypos: this.ypos,
         width: this.width,
-        height: this.height
+        height: this.height,
+        zIndex: this.zIndex
       }},
       dataType: 'json',
       url: "/artworks"
+    }).fail(function(response){
+      console.dir(response);
+    });
+  },
+  update: function(){
+    $.ajax({
+      method: 'put',
+      data: {artwork: {
+        source: this.source,
+        title: this.title,
+        artist: this.artist,
+        date: this.date,
+        imageURL: this.imageURL,
+        xpos: this.xpos,
+        ypos: this.ypos,
+        width: this.width,
+        height: this.height,
+        zIndex: this.zIndex
+      }},
+      dataType: 'json',
+      url: "/artworks/" + this.arID
     }).done(function(response){
-      console.log(response);
       console.log('artwork saved');
     }).fail(function(response){
       console.dir(response);

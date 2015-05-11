@@ -43,7 +43,7 @@ function metItemLookup(metId){
     var date = response.dateText;
     var $img = $("<img src='" + imgURL
       + "' class='lookup' id='" + metId
-      + "' data-museum='rijks' data-artist='" + artist
+      + "' data-museum='met' data-artist='" + artist
       + "' data-title='" + title
       + "' data-date='" + date + "'>");
     loadImageInspector($img);

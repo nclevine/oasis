@@ -2,12 +2,11 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.find(params[:id])
-    render @space
   end
 
   def create
-    @space = current_user.space.create(space_params)
-    render @space
+    @space = current_user.create_space(space_params)
+    redirect_to @space
   end
 
   def update

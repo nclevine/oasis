@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508210409) do
+ActiveRecord::Schema.define(version: 20150511201302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "artworks", force: :cascade do |t|
-    t.string   "type"
     t.string   "title"
     t.string   "artist"
     t.string   "date"
@@ -29,6 +28,8 @@ ActiveRecord::Schema.define(version: 20150508210409) do
     t.integer  "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "zIndex"
+    t.string   "source"
   end
 
   add_index "artworks", ["space_id"], name: "index_artworks_on_space_id", using: :btree

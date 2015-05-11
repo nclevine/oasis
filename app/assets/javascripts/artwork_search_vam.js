@@ -46,7 +46,7 @@ function vamItemLookup(vamId){
     var date = info.date_text;
     var $img = $("<img src='" + imgURL
       + "' class='lookup' id='" + vamId
-      + "' data-museum='rijks' data-artist='" + artist
+      + "' data-museum='vam' data-artist='" + artist
       + "' data-title='" + title
       + "' data-date='" + date + "'>");
     loadImageInspector($img);

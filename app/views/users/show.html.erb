@@ -1,2 +1,10 @@
 <h1><%= @user.email %></h1>
 <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+<% if !@user.space %>
+  <button class='new-space-form-show'>Make A New Oasis</button>
+  <%= form_for(@space) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Call It Something Cool...' %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
