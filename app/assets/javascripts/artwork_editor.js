@@ -57,17 +57,33 @@ function saveSalonWall(){
 
 function makeArtworkObjects(){
   for (var i = $draggables.length - 1; i >= 0; i--) {
-    var Artwork = {
-      type: $draggables[i][0].target.firstElementChild.dataset.museum,
-      title: $draggables[i][0].target.firstElementChild.dataset.title,
-      artist: $draggables[i][0].target.firstElementChild.dataset.artist,
-      date: $draggables[i][0].target.firstElementChild.dataset.date,
-      imageURL: $draggables[i][0].target.firstElementChild.src,
-      xpos: $draggables[i][0].x,
-      ypos: $draggables[i][0].y,
-      width: $draggables[i][0].target.firstElementChild.width,
-      height: $draggables[i][0].target.firstElementChild.height
-    };
-    artworkObjects.push(Artwork);
+    var type = $draggables[i][0].target.firstElementChild.dataset.museum,
+    var title = $draggables[i][0].target.firstElementChild.dataset.title,
+    var artist = $draggables[i][0].target.firstElementChild.dataset.artist,
+    var date = $draggables[i][0].target.firstElementChild.dataset.date,
+    var imageURL = $draggables[i][0].target.firstElementChild.src,
+    var xpos = $draggables[i][0].x,
+    var ypos = $draggables[i][0].y,
+    var width = $draggables[i][0].target.firstElementChild.width,
+    var height = $draggables[i][0].target.firstElementChild.height
+    var artwork = new Artwork(type, title, artist, date, imageURL, xpos, ypos, width, height)
+    artworkObjects.push(artwork);
   };
 }
+
+function Artwork(type, title, artist, date, imageURL, xpos, ypos, width, height){
+  this.type = type;
+  this.title = title;
+  this.artist = artist;
+  this.date = date;
+  this.imageURL = imageURL;
+  this.xpos = xpos;
+  this.ypos = ypos;
+  this.width = width;
+  this.height = height;
+};
+Artwork.prototype = {
+  save: function(){
+    
+  }
+};

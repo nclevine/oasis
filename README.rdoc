@@ -1,28 +1,69 @@
-== README
+Art Gallery User Stories:
+A user should be able to …
+1) search for artworks
+2) select an artwork from the results & get some basic info
+3) add the selection to their gallery wall
+4) resize and move the artwork on the wall
+5) return to the results
+6) delete an artwork from the wall
+7) view the wall
+8) enter and exit edit mode
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+overambitious ERD:
 
-Things you may want to cover:
+user has one oasis
+user has one journal
+journal has many entries
+user has one couch
+oasis has many plants
+oasis has many artworks
+oasis has many drawings
+oasis has many songs
+oasis has many videos
 
-* Ruby version
+user:
+name:string
+birthday:date
+avatarURL:string
+timestamps
 
-* System dependencies
+oasis:
+name:string
+lastVisited:datetime
+timestamps
 
-* Configuration
+journal:
+coverURL:string
+timestamps
 
-* Database creation
+entry:
+body:text
+timestamps
 
-* Database initialization
+plant:
+name:string
+type:string
+hasFruit:boolean
+potted:boolean
+potColor:string
+timestamps
 
-* How to run the test suite
+artwork:
+type:string [museum, drawing, rothko]
+title:string
+artist:string
+date:string
+imageURL:string
+width:integer
+height:integer
+timestamps
 
-* Services (job queues, cache servers, search engines, etc.)
+song:
+title:string
+artist:string
+audioURL:string
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+video:
+title:string
+sourceSite:string [youtube, vimeo]
+sourceURL:string
