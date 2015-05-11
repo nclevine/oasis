@@ -1,5 +1,6 @@
 var $artworkEditor = $('.artwork-edit-panel');
 var $draggables = [];
+var artworkObjects = [];
 
 function addImageToSalon(image){
   var $resizeContainer = $("<div class='resize-container'></div>")
@@ -51,5 +52,22 @@ function exitEditMode(){
 };
 
 function saveSalonWall(){
-  
+
+}
+
+function makeArtworkObjects(){
+  for (var i = $draggables.length - 1; i >= 0; i--) {
+    var Artwork = {
+      type: $draggables[i][0].target.firstElementChild.dataset.museum,
+      title: $draggables[i][0].target.firstElementChild.dataset.title,
+      artist: $draggables[i][0].target.firstElementChild.dataset.artist,
+      date: $draggables[i][0].target.firstElementChild.dataset.date,
+      imageURL: $draggables[i][0].target.firstElementChild.src,
+      xpos: $draggables[i][0].x,
+      ypos: $draggables[i][0].y,
+      width: $draggables[i][0].target.firstElementChild.width,
+      height: $draggables[i][0].target.firstElementChild.height
+    };
+    artworkObjects.push(Artwork);
+  };
 }
