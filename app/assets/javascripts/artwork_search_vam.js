@@ -1,5 +1,5 @@
 function vamCollectionSearch(searchTerm){
-  var searchURL = 'http://www.vam.ac.uk/api/json/museumobject/search?images=1&q=' + searchTerm;
+  var searchURL = 'https://www.vam.ac.uk/api/json/museumobject/search?images=1&q=' + searchTerm;
   $.ajax({
     method: 'get',
     dataType: 'jsonp',
@@ -18,7 +18,7 @@ function getVamResults(response){
     var objID = items[i].fields.object_number;
     var imgID = items[i].fields.primary_image_id;
     var imgDir = imgID.slice(0, 6);
-    var imgURL = "http://media.vam.ac.uk/media/thira/collection_images/" + imgDir + "/" + imgID + ".jpg";
+    var imgURL = "https://media.vam.ac.uk/media/thira/collection_images/" + imgDir + "/" + imgID + ".jpg";
       var $img = $("<img src='" + imgURL + "' id='" + objID + "' class='thumb'>");
     $img.on('click', function(){
       TweenMax.to($resultsContainer, 0.3, {opacity: 0.5});
@@ -30,7 +30,7 @@ function getVamResults(response){
 };
 
 function vamItemLookup(vamId){
-  var lookupURL = 'http://www.vam.ac.uk/api/json/museumobject/' + vamId;
+  var lookupURL = 'https://www.vam.ac.uk/api/json/museumobject/' + vamId;
   $.ajax({
     method: 'get',
     dataType: 'jsonp',
@@ -40,7 +40,7 @@ function vamItemLookup(vamId){
   }).done(function(response){
     var info = response[0].fields;
     var imgURLEnding = info.image_set[0].fields.local;
-    var imgURL = 'http://media.vam.ac.uk/media/thira/' + imgURLEnding;
+    var imgURL = 'https://media.vam.ac.uk/media/thira/' + imgURLEnding;
     var artist = info.artist;
     var title = info.title;
     var date = info.date_text;
