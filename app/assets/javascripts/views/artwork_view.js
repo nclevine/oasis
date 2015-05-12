@@ -43,7 +43,10 @@ function ArtworkView(artwork){
 }
 ArtworkView.prototype = {
   delete: function(){
+    if(this.resizeContainer.data('saved') != 'new'){
+      this.artwork.delete();
+    };
+    this.resizeContainer.data('saved', 'deleted');
     this.resizeContainer.remove();
-    this.artwork.delete();
   }
 }

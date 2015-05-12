@@ -11,6 +11,7 @@ ArtworkCollection.prototype = {
     }).done(function(response){
       this.constructArtworks(response);
       salonWall.hangLoadedArtwork();
+      salonWall.exitEditMode();
       $('.ui-resizable-handle').attr('data-clickable', true);
     }.bind(this));
   },

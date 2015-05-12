@@ -42,6 +42,7 @@ SalonWall.prototype = {
     }));
     $('.ui-resizable-handle').attr('data-clickable', true);
     $artworkSearchPanel.css("display", "none");
+    this.enterEditMode();
     TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
   },
   makeArtworkObjects: function(){
@@ -82,15 +83,22 @@ SalonWall.prototype = {
         console.log('babys already saved');
       };
     };
+    salonWall.exitEditMode();
   },
   enterEditMode: function(){
     $('.ui-resizable-handle').css('display', 'block');
+    $('.delete-button').css('display', 'block');
+    $('.enter-edit-mode').css('display', 'none');
+    $('.exit-edit-mode').css('display', 'inline-block');
     for (var i = salonWall.$draggables.length - 1; i >= 0; i--) {
       salonWall.$draggables[i][0].enable();
     };
   },
   exitEditMode: function(){
     $('.ui-resizable-handle').css('display', 'none');
+    $('.delete-button').css('display', 'none');
+    $('.exit-edit-mode').css('display', 'none');
+    $('.enter-edit-mode').css('display', 'inline-block');
     for (var i = salonWall.$draggables.length - 1; i >= 0; i--) {
       salonWall.$draggables[i][0].disable();
     };
@@ -114,87 +122,3 @@ SalonWall.prototype = {
     $saveSalonWall.on('click', this.saveWall);
   }
 };
-
-
-// old hangArtwork method:
-// hangLoadedArtwork: function(){
-//   this.$draggables = [];
-//   for (var i = 0; i < this.artworkCollection.artworks.length; i++) {
-//     var thisArtwork = this.artworkCollection.artworks[i],
-//       apiID = this.artworkCollection.artworks[i].apiID, 
-//       source = this.artworkCollection.artworks[i].source,
-//       title = this.artworkCollection.artworks[i].title,
-//       artist = this.artworkCollection.artworks[i].artist,
-//       date = this.artworkCollection.artworks[i].date,
-//       imageURL = this.artworkCollection.artworks[i].imageURL,
-//       xpos = this.artworkCollection.artworks[i].xpos,
-//       ypos = this.artworkCollection.artworks[i].ypos,
-//       width = this.artworkCollection.artworks[i].width,
-//       height = this.artworkCollection.artworks[i].height,
-//       zIndex = this.artworkCollection.artworks[i].zIndex,
-//       $resizeContainer = $("<div class='resize-container' data-saved='saved' style='left: " + xpos
-//         + "px; top: " + ypos
-//         + "px; width: " + width
-//         + "px; height: "+ height
-//         + "px; z-index: " + zIndex
-//         + ";'></div>"),
-//       $image = $("<img id ='" + apiID
-//         + "' data-museum='" + source
-//         + "' data-title='" + title
-//         + "' data-artist='" + artist
-//         + "' data-date='" + date
-//         + "' src='" + imageURL
-//         + "' class='salon'>"),
-//       $deleteButton = $("<div class='delete-button' data-clickable='true'></div>");
-//     $artworkEditor.append($resizeContainer);
-//     $resizeContainer.append($image, $deleteButton);
-//     $resizeContainer.resizable({
-//       handles: "se",
-//       aspectRatio: true,
-//       resize: function(event, ui){
-//         if(ui.element.attr('data-saved') == 'saved'){
-//           ui.element.attr('data-saved', 'update');
-//         };
-//       }
-//     });
-//     $('.ui-resizable-handle').attr('data-clickable', true);
-//     this.$draggables.push(Draggable.create($resizeContainer, {
-//       onDragStartScope: $resizeContainer,
-//       onDragStart: function(){
-//         if(this.attr('data-saved') == 'saved'){
-//           this.attr('data-saved', 'update');
-//         };
-//       }
-//     }));
-//     var thisDraggable = this.$draggables[i][0].target;
-//     $deleteButton.on('click', function(){
-//       $(this).closest('.resize-container').remove();
-//       thisArtwork.delete();
-//       thisDraggable.setAttribute('data-saved', 'deleted');
-//     });
-//   };
-// }
-
-// old addSearchImageToSalon method:
-// addSearchImageToSalon: function(image){
-//     var $resizeContainer = $("<div class='resize-container' data-saved='new'></div>");
-//     var $editableImage = image.clone();
-//     $editableImage.toggleClass('lookup salon');
-//     $resizeContainer.append($editableImage);
-//     $artworkEditor.append($resizeContainer);
-//     $resizeContainer.resizable({
-//       handles: "se",
-//       aspectRatio: true
-//     });
-//     $('.ui-resizable-handle').attr('data-clickable', true);
-//     this.$draggables.push(Draggable.create($resizeContainer, {
-//       onDragStartScope: $resizeContainer,
-//       onDragStart: function(){
-//         if(this.attr('data-saved') == 'saved'){
-//           this.attr('data-saved', 'update');
-//         };
-//       }
-//     }));
-//     $artworkSearchPanel.css("display", "none");
-//     TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
-//   },
