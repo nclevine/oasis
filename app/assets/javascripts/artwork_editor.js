@@ -57,25 +57,26 @@ function exitEditMode(){
   };
 };
 
-var newId;
 
 function saveSalonWall(){
   artworkObjects = [];
   makeArtworkObjects();
   for (var i = artworkObjects.length - 1; i >= 0; i--) {
-    if(artworkObjects[i].saved == 'new'){
+    // if(artworkObjects[i].saved == 'new'){
       $draggables[i][0].target.setAttribute('data-saved', 'saved');
-      artworkObjects[i].save().done(function(response){
-        newId = response.id;
-      });
-    } else if(artworkObjects[i].saved == 'update'){
-      $draggables[i][0].target.setAttribute('data-saved', 'saved');
-      artworkObjects[i].update();
-    } else{
-      console.log('babys already saved');
-      console.log(artworkObjects[i]);
-    };
+      artworkObjects[i].save();
+    // } else if(artworkObjects[i].saved == 'update'){
+    //   $draggables[i][0].target.setAttribute('data-saved', 'saved');
+    //   artworkObjects[i].update();
+    // } else{
+    //   console.log('babys already saved');
+    //   console.log(artworkObjects[i]);
+    // };
   };
+};
+
+function SalonWall(){
+  
 }
 
 function makeArtworkObjects(){
@@ -91,13 +92,12 @@ function makeArtworkObjects(){
       height = $draggables[i][0].target.firstElementChild.height,
       zIndex = $draggables[i][0].target.style.zIndex,
       saved = $draggables[i][0].target.dataset.saved,
-      arID = $draggables[i][0].target.dataset.arID,
-      artwork = new Artwork(source, title, artist, date, imageURL, xpos, ypos, width, height, zIndex, saved, arID);
+      artwork = new Artwork(source, title, artist, date, imageURL, xpos, ypos, width, height, zIndex, saved);
     artworkObjects.push(artwork);
   };
 }
 
-function Artwork(source, title, artist, date, imageURL, xpos, ypos, width, height, zIndex, saved, arID){
+function Artwork(source, title, artist, date, imageURL, xpos, ypos, width, height, zIndex, saved){
   this.source = source;
   this.title = title;
   this.artist = artist;
@@ -109,12 +109,12 @@ function Artwork(source, title, artist, date, imageURL, xpos, ypos, width, heigh
   this.height = height;
   this.zIndex = zIndex;
   this.saved = saved;
-  this.arID = arID;
 };
 Artwork.prototype = {
   save: function(){
-    return $.ajax({
+    $.ajax({
       method: 'post',
+      async: false,
       data: {artwork: {
         source: this.source,
         title: this.title,
@@ -129,6 +129,8 @@ Artwork.prototype = {
       }},
       dataType: 'json',
       url: "/artworks"
+    }).done(function(response){
+      arID = response.id;
     }).fail(function(response){
       console.dir(response);
     });
@@ -149,7 +151,7 @@ Artwork.prototype = {
         zIndex: this.zIndex
       }},
       dataType: 'json',
-      url: "/artworks/" + this.arID
+      url: "/artworks/"
     }).done(function(response){
       console.log('artwork saved');
     }).fail(function(response){
