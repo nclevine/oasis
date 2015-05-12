@@ -18,19 +18,19 @@ class ArtworksController < ApplicationController
   end
 
   def update
-    @artwork = Artwork.find(params[:id])
+    @artwork = Artwork.find_by(apiID: params[:artwork][:apiID])
     @artwork.update(artwork_params)
     render json: @artwork
   end
 
   def destroy
-    @artwork = Artwork.find(params[:id])
+    @artwork = Artwork.find_by(apiID: params[:artwork][:apiID])
     @artwork.destroy
     render nothing: true
   end
 
   private
   def artwork_params
-    params.require(:artwork).permit(:source, :title, :artist, :date, :imageURL, :xpos, :ypos, :width, :height, :zIndex)
+    params.require(:artwork).permit(:apiID, :source, :title, :artist, :date, :imageURL, :xpos, :ypos, :width, :height, :zIndex)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511201302) do
+ActiveRecord::Schema.define(version: 20150512154120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20150511201302) do
     t.datetime "updated_at", null: false
     t.integer  "zIndex"
     t.string   "source"
+    t.string   "apiID"
   end
 
+  add_index "artworks", ["apiID"], name: "index_artworks_on_apiID", using: :btree
   add_index "artworks", ["space_id"], name: "index_artworks_on_space_id", using: :btree
 
   create_table "entries", force: :cascade do |t|

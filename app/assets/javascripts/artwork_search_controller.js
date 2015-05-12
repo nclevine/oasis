@@ -2,10 +2,10 @@ var $artworkSearchPanel = $('.artwork-search-panel');
 var $searchTerm = $('.art-search-input');
 var $artworkSource = $('.artwork-source');
 var $searchButton = $('.artwork-search-button');
+var $showSalonWall = $('.show-salon-wall')
 var $resultsContainer = $('.results-container');
 var $imageInspector = $('.image-inspector');
 var $loading = $('.loading')
-var searchResults = '';
 
 function artworkSearchAjaxSend(){
   $loading.css("visibility", "visible");
@@ -40,7 +40,7 @@ function loadImageInspector(image){
   $itemInfo.append("<h2>Dated: <span>"+ image.data("date") +"</span></h2>");
   var $enterEditorButton = $("<button class='enter-artwork-editor'>Add To Your Salon</button>");
   $enterEditorButton.on('click', function(){
-    addImageToSalon(image);
+    salonWall.addSearchImageToSalon(image);
   });
   $itemInfo.append($enterEditorButton);
   var $closeInspector = $("<button class='close-inspector'>Close</button>")
@@ -63,3 +63,8 @@ $searchButton.on('click', function(){
     rijksCollectionSearch(searchTerm);
   };
 });
+
+$showSalonWall.on('click', function(){
+  $artworkSearchPanel.css("display", "none");
+  TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
+})

@@ -1,4 +1,5 @@
 .artwork-search-panel{
+  display: none;
   .art-search-input{
     width: 250px;
   }
@@ -39,7 +40,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  visibility: hidden;
   width: 100%;
   height: 100%;
   img.salon{
@@ -56,6 +56,15 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 1px solid black;
+  }
+  .delete-button{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 15px;
     height: 15px;
     background: white;

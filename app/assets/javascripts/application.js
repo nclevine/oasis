@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require init.js
+//= require_tree ./models
+//= require_tree ./views
 //= require_tree .
