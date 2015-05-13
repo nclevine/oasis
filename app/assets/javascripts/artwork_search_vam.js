@@ -42,7 +42,11 @@ function vamItemLookup(vamId){
     var imgURLEnding = info.image_set[0].fields.local;
     var imgURL = 'http://media.vam.ac.uk/media/thira/' + imgURLEnding;
     var artist = info.artist;
-    var title = info.title;
+    if(info.title){
+      var title = info.title;
+    } else{
+      var title = 'Untitled';
+    };
     var date = info.date_text;
     var $img = $("<img src='" + imgURL
       + "' class='lookup' id='" + vamId

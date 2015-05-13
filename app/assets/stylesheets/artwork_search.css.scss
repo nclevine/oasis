@@ -73,5 +73,14 @@
   .exit-edit-mode{
     display: none;
   }
+  .hover-info{
+    position: absolute;
+    width: 200px;
+    display: none;
+    background: white;
+    p{
+      font-size: 0.75em;
+    }
+  }
 }
 

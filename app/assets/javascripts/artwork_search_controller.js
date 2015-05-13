@@ -35,8 +35,13 @@ function loadImageInspector(image){
   $imageInspector.html(image);
   var $itemInfo = $("<div class='item-info'></div>")
   $imageInspector.append($itemInfo);
-  $itemInfo.append("<h2>Title: <span>" + image.data("title") + "</span></h2>");
-  $itemInfo.append("<h2>Artist: <span>" + image.data("artist") + "</span></h2>");
+  if(image.data('museum') == 'tumblr'){
+    $itemInfo.append("<h2>Title: <input class='tumblr-title-input-" + image.prop('id') + "' type='text' placeholder='Name This Tumblr Post'></h2>");
+    $itemInfo.append("<h2>Blog: <span>" + image.data('artist') + "</span></h2>")
+  } else{
+    $itemInfo.append("<h2>Title: <span>" + image.data("title") + "</span></h2>");
+    $itemInfo.append("<h2>Artist: <span>" + image.data("artist") + "</span></h2>");
+  }
   $itemInfo.append("<h2>Dated: <span>"+ image.data("date") +"</span></h2>");
   var $enterEditorButton = $("<button class='enter-artwork-editor'>Add To Your Salon</button>");
   $enterEditorButton.on('click', function(){
@@ -61,6 +66,12 @@ $searchButton.on('click', function(){
     vamCollectionSearch(searchTerm);
   } else if(source == 'rijks'){
     rijksCollectionSearch(searchTerm);
+  } else if(source == 'bk'){
+    bkCollectionSearch(searchTerm);
+  } else if(source == 'coop'){
+    coopCollectionSearch(searchTerm);
+  } else if(source == 'tumblr'){
+    tumblrCollectionSearch(searchTerm);
   };
 });
 

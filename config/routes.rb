@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :artworks
   resources :journals
   resources :entries
+  get '/bkmuseum', to: 'bkmuseum#search'
+  get '/bkmuseum/lookup', to: 'bkmuseum#lookup'
 end

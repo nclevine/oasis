@@ -29,7 +29,7 @@ function getMetResults(response){
 };
 
 function metItemLookup(metId){
-  var lookupURL = "http://scrapi.org/object/" + metId
+  var lookupURL = "http://scrapi.org/object/" + metId;
   $.ajax({
     method: 'get',
     dataType: 'json',
@@ -38,7 +38,11 @@ function metItemLookup(metId){
     complete: artworkLookupAjaxComplete
   }).done(function(response){
     var imgURL = response.currentImage.imageUrl;
-    var artist = response.primaryArtistNameOnly;
+    if(response.primaryArtistNameOnly){
+      var artist = response.primaryArtistNameOnly;
+    } else{
+      var artist = 'Unknown';
+    };
     var title = response.title;
     var date = response.dateText;
     var $img = $("<img src='" + imgURL
