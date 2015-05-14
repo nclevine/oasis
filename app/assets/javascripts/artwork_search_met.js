@@ -1,5 +1,5 @@
 function metCollectionSearch(searchTerm){
-  var searchURL = '//scrapi.org/search/' + searchTerm;
+  var searchURL = 'http://scrapi.org/search/' + searchTerm;
   $.ajax({
     method: 'get',
     dataType: 'json',
@@ -32,7 +32,7 @@ function getMetResults(response){
 };
 
 function metItemLookup(metId){
-  var lookupURL = "//scrapi.org/object/" + metId;
+  var lookupURL = "http://scrapi.org/object/" + metId;
   $.ajax({
     method: 'get',
     dataType: 'json',
