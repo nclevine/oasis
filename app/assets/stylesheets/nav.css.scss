@@ -1,6 +1,22 @@
 .new_space{
   visibility: hidden;
 }
-.navigation, .wall-options{
+.wall-options{
   display: none;
+}
+.navigation, .show-nav{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
+  width: 30px;
+  height: 30px;
+}
+.navigation{
+  overflow: hidden;
+  visibility: hidden;
+  z-index: 3000;
+}
+.show-nav{
+  z-index: 3001;
 }

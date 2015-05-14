@@ -20,12 +20,17 @@ function getCoopResults(response){
     } else{
       var thumbURL = items[i].images[0].b.url;
     };
-    var $img = $("<img src='" + thumbURL + "' id='" + items[i].id + "' class='thumb'>");
-    $img.on('click', function(){
-      TweenMax.to($resultsContainer, 0.3, {opacity: 0.5});
-      coopItemLookup(this.id);
-    });
-    $resultsContainer.append($img);
+    if(thumbURL != 'https://images.collection.cooperhewitt.org/0__n.jpg'){
+      var $img = $("<img src='" + thumbURL + "' id='" + items[i].id + "' class='thumb'>");
+      $img.on('click', function(){
+        TweenMax.to($resultsContainer, 0.3, {opacity: 0.5});
+        coopItemLookup(this.id);
+      });
+      $resultsContainer.append($img);
+    }
+  };
+  if($resultsContainer.html() == ''){
+    $resultsContainer.html("<h2>No Results</h2>")
   };
   searchResults = $resultsContainer.html();
 };

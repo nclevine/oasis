@@ -25,6 +25,9 @@ function getRijksResults(response){
       $resultsContainer.append($img);
     };
   };
+  if($resultsContainer.html() == ''){
+    $resultsContainer.html("<h2>No Results</h2>")
+  };
   searchResults = $resultsContainer.html();
 };
 

@@ -8,5 +8,5 @@
     <%= f.submit %>
   <% end %>
 <% else %>
-  <%= link_to "Go To Salon Wall", space_path(current_user.space) %>
+  <%= link_to "Go To Salon Wall", current_user.space %>
 <% end %>

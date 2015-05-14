@@ -155,6 +155,9 @@ SalonWall.prototype = {
       $resultsContainer.css("opacity", 1);
       $imageInspector.css("visibility", "hidden");
       TweenMax.to($artworkEditor, 0.1, {autoAlpha: 0});
+      window.setTimeout(function(){
+        $artworkEditor.css('display', 'none')
+      }, 100);
     });
     $enterEditMode.on('click', this.enterEditMode);
     $exitEditMode.on('click', this.exitEditMode);

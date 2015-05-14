@@ -11,8 +11,13 @@ var $showSalonWall;
 var $resultsContainer;
 var $imageInspector;
 var $loading;
+var $navigation;
+var $showNav;
 
-$(document).ready(function() {
+$(document).ready(initialize);
+$(document).on('page:load', initialize);
+
+function initialize(){
   $artworkEditor = $('.artwork-edit-panel');
   $resizeHandles = $('.ui-resizable-handle');
   $artworkSearchPanel = $('.artwork-search-panel');
@@ -23,6 +28,8 @@ $(document).ready(function() {
   $resultsContainer = $('.results-container');
   $imageInspector = $('.image-inspector');
   $loading = $('.loading');
+  $navigation = $('.navigation');
+  $showNav = $('.show-nav');
   console.log($artworkEditor);
   console.log($resizeHandles);
   artworkCollection = new ArtworkCollection();
@@ -50,6 +57,19 @@ $(document).ready(function() {
 
   $showSalonWall.on('click', function(){
     $artworkSearchPanel.css("display", "none");
-    TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
+    $artworkEditor.css('display', 'block');
+    TweenMax.to($artworkEditor, 0.2, {autoAlpha: 1});
   });
-});
+
+  $showNav.on('click', function(){
+    TweenMax.to($showNav, 0.1, {autoAlpha: 0});
+    TweenMax.to($navigation, 0.1, {autoAlpha: 1});
+    TweenMax.to($navigation, 0.2, {width: 200, height: 200, delay: 0.1});
+  });
+
+  $('.close-nav').on('click', function(){
+    TweenMax.to($navigation, 0.2, {width: 30, height: 30});
+    TweenMax.to($showNav, 0.1, {autoAlpha: 1, delay: 0.2});
+    TweenMax.to($navigation, 0.1, {autoAlpha: 0, delay: 0.2});
+  });
+}
