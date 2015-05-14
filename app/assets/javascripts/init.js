@@ -13,6 +13,8 @@ var $imageInspector;
 var $loading;
 var $navigation;
 var $showNav;
+var $newSpaceForm;
+
 
 $(document).ready(initialize);
 $(document).on('page:load', initialize);
@@ -30,8 +32,10 @@ function initialize(){
   $loading = $('.loading');
   $navigation = $('.navigation');
   $showNav = $('.show-nav');
-  console.log($artworkEditor);
-  console.log($resizeHandles);
+  $newSpaceForm = $('.new_space');
+  $('.new-space-form-show').on('click', function(){
+    $newSpaceForm.css("visibility", "visible");
+  });
   artworkCollection = new ArtworkCollection();
   salonWall = new SalonWall(artworkCollection);
   salonWall.loadEditorTools();
