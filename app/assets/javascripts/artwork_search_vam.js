@@ -1,9 +1,6 @@
 function vamCollectionSearch(searchTerm){
-  // var searchURL = 'http://www.vam.ac.uk/api/json/museumobject/search?images=1&q=' + searchTerm;
   $.ajax({
     method: 'get',
-    // dataType: 'jsonp',
-    // url: searchURL,
     dataType: 'json',
     url: '/victoriaalbert',
     data: {keyword: searchTerm},
@@ -37,11 +34,8 @@ function getVamResults(response){
 };
 
 function vamItemLookup(vamId){
-  // var lookupURL = 'http://www.vam.ac.uk/api/json/museumobject/' + vamId;
   $.ajax({
     method: 'get',
-    // dataType: 'jsonp',
-    // url: lookupURL,
     dataType: 'json',
     url: '/victoriaalbert/lookup',
     data: {objectID: vamId},
