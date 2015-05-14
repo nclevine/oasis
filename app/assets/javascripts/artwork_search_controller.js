@@ -1,12 +1,3 @@
-// var $artworkSearchPanel = $('.artwork-search-panel');
-// var $searchTerm = $('.art-search-input');
-// var $artworkSource = $('.artwork-source');
-// var $searchButton = $('.artwork-search-button');
-// var $showSalonWall = $('.show-salon-wall')
-// var $resultsContainer = $('.results-container');
-// var $imageInspector = $('.image-inspector');
-// var $loading = $('.loading');
-
 function artworkSearchAjaxSend(){
   $loading.css("visibility", "visible");
   TweenMax.to($resultsContainer, 0.3, {opacity: 0.5});
@@ -56,26 +47,3 @@ function loadImageInspector(image){
   $itemInfo.append($closeInspector);
   TweenMax.to($imageInspector, 0.3, {autoAlpha: 1});
 };
-
-// $searchButton.on('click', function(){
-//   var source = $artworkSource.val();
-//   var searchTerm = $searchTerm.val();
-//   if(source == 'met'){
-//     metCollectionSearch(searchTerm);
-//   } else if(source == 'vam'){
-//     vamCollectionSearch(searchTerm);
-//   } else if(source == 'rijks'){
-//     rijksCollectionSearch(searchTerm);
-//   } else if(source == 'bk'){
-//     bkCollectionSearch(searchTerm);
-//   } else if(source == 'coop'){
-//     coopCollectionSearch(searchTerm);
-//   } else if(source == 'tumblr'){
-//     tumblrCollectionSearch(searchTerm);
-//   };
-// });
-
-// $showSalonWall.on('click', function(){
-//   $artworkSearchPanel.css("display", "none");
-//   TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
-// })
