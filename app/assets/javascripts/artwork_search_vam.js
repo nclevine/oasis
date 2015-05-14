@@ -1,12 +1,12 @@
 function vamCollectionSearch(searchTerm){
-  var searchURL = 'http://www.vam.ac.uk/api/json/museumobject/search?images=1&q=' + searchTerm;
+  // var searchURL = 'http://www.vam.ac.uk/api/json/museumobject/search?images=1&q=' + searchTerm;
   $.ajax({
     method: 'get',
-    dataType: 'jsonp',
-    url: searchURL,
-    // dataType: 'json',
-    // url: '/victoriaalbert',
-    // data: {keyword: searchTerm},
+    // dataType: 'jsonp',
+    // url: searchURL,
+    dataType: 'json',
+    url: '/victoriaalbert',
+    data: {keyword: searchTerm},
     beforeSend: artworkSearchAjaxSend,
     complete: artworkSearchAjaxComplete
   }).done(function(response){
@@ -37,14 +37,14 @@ function getVamResults(response){
 };
 
 function vamItemLookup(vamId){
-  var lookupURL = 'http://www.vam.ac.uk/api/json/museumobject/' + vamId;
+  // var lookupURL = 'http://www.vam.ac.uk/api/json/museumobject/' + vamId;
   $.ajax({
     method: 'get',
-    dataType: 'jsonp',
-    url: lookupURL,
-    // dataType: 'json',
-    // url: '/victoriaalbert/lookup',
-    // data: {objectID: vamId},
+    // dataType: 'jsonp',
+    // url: lookupURL,
+    dataType: 'json',
+    url: '/victoriaalbert/lookup',
+    data: {objectID: vamId},
     beforeSend: artworkLookupAjaxSend,
     complete: artworkLookupAjaxComplete
   }).done(function(response){
