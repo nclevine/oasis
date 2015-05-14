@@ -1,7 +1,7 @@
 class SpacesController < ApplicationController
 
   def show
-    @space = Space.find(params[:id])
+    @space = current_user.space
   end
 
   def create
@@ -10,13 +10,13 @@ class SpacesController < ApplicationController
   end
 
   def update
-    @space = Space.find(params[:id])
+    @space = current_user.space
     @space.update(space_params)
     render @space
   end
 
   def destroy
-    @space = Space.find(params[:id])
+    @space = current_user.space
     @space.destroy
     redirect_to root_url
   end

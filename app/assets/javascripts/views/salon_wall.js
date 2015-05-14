@@ -141,13 +141,15 @@ SalonWall.prototype = {
     };
   },
   loadEditorTools: function(){
-    var $returnToSearch = $('.artwork-edit-panel .return-to-search');
+    var $returnToSearch = $('.return-to-search');
     if(searchResults){
       $returnToSearch.text('Return To Search');
     };
-    var $enterEditMode = $('.artwork-edit-panel .enter-edit-mode');
-    var $exitEditMode = $('.artwork-edit-panel .exit-edit-mode');
-    var $saveSalonWall = $('.artwork-edit-panel .save-salon-wall')
+    var $enterEditMode = $('.enter-edit-mode');
+    var $exitEditMode = $('.exit-edit-mode');
+    var $saveSalonWall = $('.save-salon-wall');
+    var $enterInspectMode = $('.enter-inspect-mode');
+    var $exitInspectMode = $('.exit-inspect-mode');
     $returnToSearch.on('click', function(){
       $artworkSearchPanel.css("display", "block");
       $resultsContainer.css("opacity", 1);
@@ -157,8 +159,12 @@ SalonWall.prototype = {
     $enterEditMode.on('click', this.enterEditMode);
     $exitEditMode.on('click', this.exitEditMode);
     $saveSalonWall.on('click', this.saveWall);
+    $enterInspectMode.on('click', this.enterInspectMode);
+    $exitInspectMode.on('click', this.exitInspectMode);
   },
   enterInspectMode: function(){
+    $('.enter-inspect-mode').css('display', 'none');
+    $('.exit-inspect-mode').css('display', 'inline-block');
     var $salonImages = $('.salon');
     for (var i = 0; i < $salonImages.length; i++){
       var id = $salonImages[i].id,
@@ -193,6 +199,8 @@ SalonWall.prototype = {
     };
   },
   exitInspectMode: function(){
+    $('.exit-inspect-mode').css('display', 'none');
+    $('.enter-inspect-mode').css('display', 'inline-block');
     var $salonImages = $('.salon'); 
     $($salonImages.parents()).off();
     $('.hover-info').remove();

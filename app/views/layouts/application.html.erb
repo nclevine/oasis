@@ -3,12 +3,23 @@
 <head>
   <title>Oasis</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <div class='navigation'>
+    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+    <%= link_to 'Profile', user_path(current_user) %>
+    <button class='hide-tools'>Hide Tools</button>
+    <button class='wall-options'>Wall Options</button>
+  </div>
+  <div class='wall-options'>
+    <h2>Background:</h2>
+    <h2>Frames:</h2>
+  </div>
+
 <%= yield %>
 
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

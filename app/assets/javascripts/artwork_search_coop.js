@@ -15,7 +15,11 @@ function getCoopResults(response){
   var items = response.objects;
   $resultsContainer.html('');
   for (var i = 0; i < items.length; i++) {
-    var thumbURL = items[i].images[0].n.url;
+    if(items[i].images[0].n){
+      var thumbURL = items[i].images[0].n.url;
+    } else{
+      var thumbURL = items[i].images[0].b.url;
+    };
     var $img = $("<img src='" + thumbURL + "' id='" + items[i].id + "' class='thumb'>");
     $img.on('click', function(){
       TweenMax.to($resultsContainer, 0.3, {opacity: 0.5});
