@@ -54,6 +54,7 @@ SalonWall.prototype = {
       autoScroll: 1
     }));
     $('.ui-resizable-handle').attr('data-clickable', true);
+    $artworkEditor.css('display', 'block')
     $artworkSearchPanel.css("display", "none");
     this.enterEditMode();
     TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
