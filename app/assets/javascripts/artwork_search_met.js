@@ -1,9 +1,9 @@
 function metCollectionSearch(searchTerm){
-  var searchURL = 'http://scrapi.org/search/' + searchTerm;
   $.ajax({
     method: 'get',
     dataType: 'json',
-    url: searchURL,
+    url: '/metmuseum',
+    data: {keyword: searchTerm},
     beforeSend: artworkSearchAjaxSend,
     complete: artworkSearchAjaxComplete
   }).done(function(response){
@@ -32,11 +32,11 @@ function getMetResults(response){
 };
 
 function metItemLookup(metId){
-  var lookupURL = "http://scrapi.org/object/" + metId;
   $.ajax({
     method: 'get',
     dataType: 'json',
-    url: lookupURL,
+    url: '/metmuseum/lookup',
+    data: {objectID: metId},
     beforeSend: artworkLookupAjaxSend,
     complete: artworkLookupAjaxComplete
   }).done(function(response){

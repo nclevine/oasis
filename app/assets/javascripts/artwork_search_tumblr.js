@@ -1,9 +1,9 @@
 function tumblrCollectionSearch(searchTerm){
-  var searchURL = 'http://api.tumblr.com/v2/tagged?api_key=AVethARkByHX2bh8S4IfzOFblcEL5qhd5xqaHZjGQhW5xLRXS9&type=photo&tag=' + searchTerm;
   $.ajax({
     method: 'get',
-    dataType: 'jsonp',
-    url: searchURL,
+    dataType: 'json',
+    url: '/tumblr',
+    data: {keyword: searchTerm},
     beforeSend: artworkSearchAjaxSend,
     complete: artworkSearchAjaxComplete
   }).done(function(response){
@@ -33,11 +33,11 @@ function getTumblrResults(response){
 };
 
 function tumblrItemLookup(blogName, itemID){
-  var lookupURL = "http://api.tumblr.com/v2/blog/" + blogName + ".tumblr.com/posts?api_key=AVethARkByHX2bh8S4IfzOFblcEL5qhd5xqaHZjGQhW5xLRXS9&id=" + itemID;
   $.ajax({
     method: 'get',
-    dataType: 'jsonp',
-    url: lookupURL,
+    dataType: 'json',
+    url: '/tumblr/lookup',
+    data: {blogName: blogName, objectID: itemID},
     beforeSend: artworkLookupAjaxSend,
     complete: artworkLookupAjaxComplete
   }).done(function(response){

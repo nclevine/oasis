@@ -4,9 +4,13 @@ function vamCollectionSearch(searchTerm){
     method: 'get',
     dataType: 'jsonp',
     url: searchURL,
+    // dataType: 'json',
+    // url: '/victoriaalbert',
+    // data: {keyword: searchTerm},
     beforeSend: artworkSearchAjaxSend,
     complete: artworkSearchAjaxComplete
   }).done(function(response){
+    console.log(response);
     getVamResults(response);
   });
 };
@@ -38,6 +42,9 @@ function vamItemLookup(vamId){
     method: 'get',
     dataType: 'jsonp',
     url: lookupURL,
+    // dataType: 'json',
+    // url: '/victoriaalbert/lookup',
+    // data: {objectID: vamId},
     beforeSend: artworkLookupAjaxSend,
     complete: artworkLookupAjaxComplete
   }).done(function(response){

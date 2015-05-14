@@ -1,9 +1,9 @@
 function rijksCollectionSearch(searchTerm){
-  var searchURL = 'https://www.rijksmuseum.nl/api/en/collection?key=buL32qSe&format=json&imgonly=true&ps=50&s=relevance&q=' + searchTerm;
   $.ajax({
     method: 'get',
     dataType: 'json',
-    url: searchURL,
+    url: '/rijksmuseum',
+    data: {keyword: searchTerm},
     beforeSend: artworkSearchAjaxSend,
     complete: artworkSearchAjaxComplete
   }).done(function(response){
@@ -32,11 +32,11 @@ function getRijksResults(response){
 };
 
 function rijksItemLookup(rijksId){
-  var lookupURL = "https://www.rijksmuseum.nl/api/en/collection/" + rijksId + "?key=buL32qSe&format=json";
   $.ajax({
     method: 'get',
     dataType: 'json',
-    url: lookupURL,
+    url: '/rijksmuseum/lookup',
+    data: {objectID: rijksId},
     beforeSend: artworkLookupAjaxSend,
     complete: artworkLookupAjaxComplete
   }).done(function(response){

@@ -1,9 +1,9 @@
 function coopCollectionSearch(searchTerm){
-  var searchURL = 'https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.search.objects&access_token=05e2418430e18c1a48e37bf5b0d972b8&has_images=1&page=1&per_page=100&query=' + searchTerm;
   $.ajax({
     method: 'get',
     dataType: 'json',
-    url: searchURL,
+    url: '/coop',
+    data: {keyword: searchTerm},
     beforeSend: artworkSearchAjaxSend,
     complete: artworkSearchAjaxComplete
   }).done(function(response){
@@ -36,11 +36,11 @@ function getCoopResults(response){
 };
 
 function coopItemLookup(coopId){
-  var lookupURL = "https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.objects.getInfo&access_token=05e2418430e18c1a48e37bf5b0d972b8&object_id=" + coopId;
   $.ajax({
     method: 'get',
     dataType: 'json',
-    url: lookupURL,
+    url: '/coop/lookup',
+    data: {objectID: coopId},
     beforeSend: artworkLookupAjaxSend,
     complete: artworkLookupAjaxComplete
   }).done(function(response){
