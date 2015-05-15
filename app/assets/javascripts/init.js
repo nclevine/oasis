@@ -92,5 +92,9 @@ function initialize(){
       $(this).html('Hide Tools');
       $(this).toggleClass('hide show');
     }
+  });
+
+  $('.edit-profile').on('click', function(){
+    TweenMax.fromTo($('.edit-profile-form'), 0.2, {autoAlpha: 0, scaleX: 0.2, scaleY: 0.2}, {autoAlpha: 1, scaleX: 1, scaleY: 1, transformOrigin: 'center'})
   })
 }

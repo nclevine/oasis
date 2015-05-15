@@ -4,6 +4,7 @@ $chivo: 'Chivo', sans-serif;
 $faded-white: rgba(256, 256, 256, 0.5);
 $marsala: rgb(150, 79, 76);
 $pale-turquoise: rgb(127, 163, 161);
+$chartreuse: rgb(156, 255, 58);
 
 body{
   margin: 0;
@@ -140,8 +141,46 @@ body{
   position: absolute;
   width: 100%;
   height: 100%;
-  .new-space-form{
+  background: asset-data-url("chuck_close.jpg") center;
+  background-size: cover;
+  color: $chartreuse;
+  text-align: center;
+  font-size: 1.1em;
+  h1{
+    font-family: $averia;
+    font-size: 4em;
+  }
+  a, a:visited{
+    color: $chartreuse;
+    text-decoration: none;
+  }
+  button, input{
+    margin-bottom: 15px;
+    font-family: $chivo;
+    background: rgba(156, 255, 58, 0.5);
+    border: none;
+    border-radius: 2px;
+    font-size: 1.1em;
+    &:hover, &:active{
+      background: $chartreuse;
+    }
+  }
+  .new-space-form, .edit-profile-form{
     visibility: hidden;
+  }
+  .edit-profile-form{
+    margin: 0 auto;
+    width: 300px;
+    button, input, label{
+      display: block;
+    }
+    input[type=text]{
+      width: 100%;
+    }
+    label{
+      text-align: left;
+      font-size: 1.2em;
+    }
   }
 }
 
