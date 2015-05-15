@@ -18,7 +18,7 @@ body{
   width: 100%;
   height: 100%;
   z-index: 5000;
-  background: asset-url("big_gertrude.jpg", image);
+  background: asset-data-url("big_gertrude.jpg") center;
   background-size: cover;
   .title{
     color: white;
@@ -79,7 +79,7 @@ body{
   width: 100%;
   height: 100%;
   z-index: 5000;
-  background: asset-url("blue_rothko.jpg", image) center;
+  background: asset-data-url("blue_rothko.jpg") center;
   // url(/assets/blue_rothko.jpg) center
   background-size: cover;
   color: $pale-turquoise;
