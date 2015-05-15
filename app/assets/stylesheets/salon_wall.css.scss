@@ -232,7 +232,24 @@ $faded-black: rgba(0, 0, 0, 0.5);
   border-radius: 2px;
 }
 .wall-options{
-  display: none;
+  position: fixed;
+  top: 15%;
+  left: 25%;
+  visibility: hidden;
+  width: 300px;
+  background: $faded-black;
+  color: white;
+  button input{
+    font-family: $chivo;
+    font-size: 1.1em;
+    background: none;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    &:hover, &:active{
+      background: $faded-black;
+    }
+  }
 }
 
 button, input, i{

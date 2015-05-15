@@ -35,9 +35,7 @@ function initialize(){
   $navigation = $('.navigation');
   $showNav = $('.show-nav');
   $newSpaceForm = $('.new-space-form');
-  $('.new-space-form-show').on('click', function(){
-    $newSpaceForm.css("visibility", "visible");
-  });
+  
   artworkCollection = new ArtworkCollection();
   salonWall = new SalonWall(artworkCollection);
   salonWall.loadEditorTools();
@@ -93,8 +91,12 @@ function initialize(){
       $(this).toggleClass('hide show');
     }
   });
+  
+  $('.new-space-form-show').on('click', function(){
+    TweenMax.fromTo($newSpaceForm, 0.2, {autoAlpha: 0, scaleX: 0.2, scaleY: 0.2}, {autoAlpha: 1, scaleX: 1, scaleY: 1, transformOrigin: 'center'})
+  });
 
   $('.edit-profile').on('click', function(){
     TweenMax.fromTo($('.edit-profile-form'), 0.2, {autoAlpha: 0, scaleX: 0.2, scaleY: 0.2}, {autoAlpha: 1, scaleX: 1, scaleY: 1, transformOrigin: 'center'})
-  })
+  });
 }

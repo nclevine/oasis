@@ -1,17 +1,5 @@
 <div class='profile'>
   <h1 class='welcome'><%= @welcome %></h1>
-  <% if !@user.space %>
-    <button class='new-space-form-show'>Make A New Salon Wall</button>
-    <div class='new-space-form'>
-      <%= form_for(@space) do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name, placeholder: 'Call It Something Cool...' %>
-        <%= f.submit %>
-      <% end %>
-    </div>
-  <% else %>
-    <h2 class='visit-salon-wall'><%= link_to "Go To Salon Wall", current_user.space %></h2>
-  <% end %>
   <button class='edit-profile'>Edit Profile</button>
   <div class='edit-profile-form'>
     <%= form_for(@user) do |f| %>
@@ -22,4 +10,16 @@
       <%= f.submit %>
     <% end %>   
   </div>
+  <% if !@user.space %>
+    <button class='new-space-form-show'>Make A New Salon Wall</button>
+    <div class='new-space-form'>
+      <%= form_for(@space) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  <% else %>
+    <h2 class='visit-salon-wall'><%= link_to "Go To Salon Wall", current_user.space %></h2>
+  <% end %>
 </div>

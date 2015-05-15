@@ -167,8 +167,6 @@ body{
   }
   .new-space-form, .edit-profile-form{
     visibility: hidden;
-  }
-  .edit-profile-form{
     margin: 0 auto;
     width: 300px;
     button, input, label{
@@ -181,6 +179,9 @@ body{
       text-align: left;
       font-size: 1.2em;
     }
+  }
+  .new-space-form{
+    height: 0px;
   }
 }
 

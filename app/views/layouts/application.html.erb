@@ -18,7 +18,13 @@
   </div>
   <div class='wall-options'>
     <h2>Background:</h2>
-    <h2>Frames:</h2>
+    <% if user_signed_in? && current_user.space %>
+      <%= form_for(current_user.space) do |f| %>
+        <%= f.label :imageURL, 'Background' %>
+        <%= f.text_field :imageURL %>
+        <%= f.submit %>
+      <% end %>
+    <% end %>
   </div>
 
 <%= yield %>
