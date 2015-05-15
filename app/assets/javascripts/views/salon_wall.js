@@ -186,17 +186,17 @@ SalonWall.prototype = {
       } else if(source == 'tumblr'){
         source = 'Tumblr';
       };
-      var $imageInfo = $("<div class='hover-info' id='" + id + "-info'><p class='title'>" + title
-        + "</p><p class='artist'>" + artist
-        + "</p><p class='date'>" + date
-        + "</p><p class='source'>" + source
+      var $imageInfo = $("<div class='image-info' id='" + id + "-info'><p class='title'><span>Title: </span>" + title
+        + "</p><p class='artist'><span>Artist: </span>" + artist
+        + "</p><p class='date'><span>Dated: </span>" + date
+        + "</p><p class='source'><span>Courtesy of: </span>" + source
         + "</p></div>");
       $artworkEditor.append($imageInfo);
       $($salonImages[i].parentNode).on('click', {
         divID: id + '-info'
-      }, hoverDiv).on('mouseout', {
+      }, displayInfoDiv).on('mouseout', {
         divID: id + '-info'
-      }, removeHoverDiv);
+      }, removeInfoDiv);
     };
   },
   exitInspectMode: function(){
@@ -204,7 +204,7 @@ SalonWall.prototype = {
     $('.enter-inspect-mode').css('display', 'inline-block');
     var $salonImages = $('.salon'); 
     $($salonImages.parents()).off();
-    $('.hover-info').remove();
+    $('.image-info').remove();
   },
   returnToSearch: function(){
     $editorTools.css('display', 'none');
@@ -217,6 +217,7 @@ SalonWall.prototype = {
     }, 100);
   },
   zoomOut: function(){
+    $('.enter-inspect-mode').css('display', 'none');
     $('.zoom-out').css('display', 'none');
     $('.zoom-in').css('display', 'inline-block');
     var fitScale = window.innerWidth / $artworkEditor.width();
@@ -224,24 +225,33 @@ SalonWall.prototype = {
     TweenMax.to($artworkEditor, 1, {scaleX: fitScale, scaleY: fitScale, transformOrigin: 'left top'});
   },
   zoomIn: function(){
+    $('.enter-inspect-mode').css('display', 'inline-block');
     $('.zoom-in').css('display', 'none');
     $('.zoom-out').css('display', 'inline-block');
     TweenMax.to($artworkEditor, 1, {scaleX: 1, scaleY: 1});
   }
 };
 
-function hoverDiv(event){
-  var left = event.pageX,
-    top = event.pageY,
-    $div = $("#" + event.data.divID);
+function displayInfoDiv(event){
+  var $div = $("#" + event.data.divID);
+  var $image = $(this);
+  console.log($image.position());
   $div.css({
-    zIndex: 3000,
-    display: 'block',
-    left: left,
-    top: top
+    top: $image.position().top,
+    left: $image.position().left,
+    width: $image.width(),
+    height: $image.height()
   });
+  $($div.children()).css({
+    marginLeft: ($image.width() - 200) / 2,
+    marginRight: ($image.width() - 200) / 2,
+    marginTop: 10,
+    marginBottom: 10
+  });
+  $($div.children().first()).css('marginTop', 40)
+  TweenMax.fromTo($div, 0.3, {scaleX: 0.2, scaleY: 0.2}, {display: 'block', scaleX: 1, scaleY: 1});
 };
-function removeHoverDiv(event){
+function removeInfoDiv(event){
   var $div = $('#' + event.data.divID);
-  $div.css('display', 'none');
+  TweenMax.to($div, 0.3, {display: 'none'});
 }

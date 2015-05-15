@@ -26,7 +26,7 @@ function ArtworkView(artwork){
       + "' data-date='" + date
       + "' src='" + imageURL
       + "' class='salon'>"),
-    $deleteButton = $("<div class='delete-button' data-clickable='true'></div>");
+    $deleteButton = $("<div class='delete-button' data-clickable='true'><i class='fa fa-times delete-logo'></i></div>");
   $resizeContainer.append($image, $deleteButton);
   $resizeContainer.resizable({
     handles: "se",
@@ -37,7 +37,7 @@ function ArtworkView(artwork){
       };
     }
   });
-
+  $($resizeContainer.children().last()).append("<i class='fa fa-expand resize-logo'></i>");
   this.resizeContainer = $resizeContainer;
   $deleteButton.on('click', this.delete.bind(this));
 }

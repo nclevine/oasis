@@ -68,15 +68,29 @@ function initialize(){
     TweenMax.to($artworkEditor, 0.2, {autoAlpha: 1});
   });
 
-  $showNav.on('click', function(){
-    TweenMax.to($showNav, 0.1, {autoAlpha: 0});
-    TweenMax.to($navigation, 0.1, {autoAlpha: 1});
-    TweenMax.to($navigation, 0.2, {width: 200, height: 200, delay: 0.1});
+  $('.nav-button').on('click', function(){
+    if($('.nav-button').hasClass('nav-open')){
+      TweenMax.to($navigation, 0.2, {width: 115, height: 130});
+      TweenMax.to($('.navigation a, .navigation button'), 0.1, {autoAlpha: 1, delay: 0.2});
+      $('.nav-button').toggleClass('nav-open nav-close');
+    } else{      
+      TweenMax.to($('.navigation a, .navigation button'), 0.1, {autoAlpha: 0});
+      TweenMax.to($navigation, 0.2, {width: 25, height: 25, delay: 0.1});
+      $('.nav-button').toggleClass('nav-open nav-close');
+    }
   });
 
-  $('.close-nav').on('click', function(){
-    TweenMax.to($navigation, 0.2, {width: 30, height: 30});
-    TweenMax.to($showNav, 0.1, {autoAlpha: 1, delay: 0.2});
-    TweenMax.to($navigation, 0.1, {autoAlpha: 0, delay: 0.2});
-  });
+  $('.hide-tools').on('click', function(){
+    if($(this).hasClass('hide')){
+      TweenMax.to($editorTools, 0.1, {autoAlpha: 0});
+      // $editorTools.css('display', 'none');
+      $(this).html('Show Tools');
+      $(this).toggleClass('hide show');
+    } else{
+      TweenMax.to($editorTools, 0.1, {autoAlpha: 1});
+      // $editorTools.css('display', 'block');
+      $(this).html('Hide Tools');
+      $(this).toggleClass('hide show');
+    }
+  })
 }

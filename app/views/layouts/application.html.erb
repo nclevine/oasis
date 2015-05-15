@@ -8,13 +8,14 @@
 </head>
 <body>
   <div class='navigation'>
-    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-    <%= link_to 'Profile', current_user %>
-    <button class='hide-tools'>Hide Tools</button>
-    <button class='wall-options'>Wall Options</button>
-    <button class='close-nav'>Close</button>
+    <i class="fa fa-bars nav-button nav-open"></i>
+    <div class='choices'>
+      <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+      <%= link_to 'Profile', current_user %>
+      <button class='hide-tools hide'>Hide Tools</button>
+      <button class='wall-options-button'>Wall Options</button>
+    </div>
   </div>
-  <div class='show-nav'>nav</div>
   <div class='wall-options'>
     <h2>Background:</h2>
     <h2>Frames:</h2>

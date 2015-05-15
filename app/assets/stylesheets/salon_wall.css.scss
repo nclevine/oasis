@@ -19,6 +19,7 @@ $faded-black: rgba(0, 0, 0, 0.5);
     }
   }
   .results-container{
+    margin-top: 30px;
     width: 100%;
     overflow: auto;
     img.thumb{
@@ -30,17 +31,63 @@ $faded-black: rgba(0, 0, 0, 0.5);
     visibility: hidden;
     overflow: auto;
     position: fixed;
+    left: 10%;
+    top: 10%;
     width: 75%;
     height: 70%;
-    left: 13%;
-    top: 20%;
-    background: white;
+    padding: 25px;
+    background: rgba(0,0,0,0.85);
+    border-radius: 4px;
+    color: white;
     img.lookup{
       float: left;
       width: 50%;
     }
+    .item-info{
+      float: right;
+      width: 50%;
+    }
     h2{
-      text-align: right;
+      font-weight: normal;
+      font-size: 1em;
+      margin-left: 30px;
+      color: #888;
+      span{
+        display: block;
+        margin-top: 10px;
+        color: white;
+        font-size: 1.8em;
+        font-family: $averia;
+      }
+    }
+    input{
+      display: block;
+      margin-top: 10px;
+      background: none;
+      border: none;
+      border-radius: 2px;
+      font-family: $averia;
+      font-size: 1.8em;
+      color: white;
+    }
+    button{
+      background: black;
+      border: none;
+      border-radius: 3px;
+      color: #888;
+      font-family: $chivo;
+      font-size: 1em;
+      &:hover{
+        color: white;
+      }
+    }
+    .enter-artwork-editor{
+      float: left;
+      margin-left: 50px;
+    }
+    .close-inspector{
+      float: right;
+      margin-right: 50px;
     }
   }
   .loading{
@@ -72,27 +119,37 @@ $faded-black: rgba(0, 0, 0, 0.5);
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 15px;
-    height: 15px;
-    background: white;
-    border: 1px solid black;
+    transform: rotate(90deg);
   }
   .delete-button{
     position: absolute;
     top: 0;
     left: 0;
-    width: 15px;
-    height: 15px;
-    background: white;
-    border: 1px solid black;
   }
-  .hover-info{
+  .resize-logo, .delete-logo{
+    padding: 0 2px;
+    background: $faded-black;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-size: 1.3em;
+    cursor: pointer;
+  }
+  .image-info{
     position: absolute;
-    width: 200px;
     display: none;
-    background: white;
+    background: $faded-black;
+    z-index: 3000;
     p{
-      font-size: 0.75em;
+      color: white;
+      font-family: $averia;
+      font-size: 1em;
+      span{
+        display: block;
+        color: #aaa;
+        font-family: $chivo;
+        font-size: 0.9em;
+      }
     }
   }
 }
@@ -113,25 +170,43 @@ $faded-black: rgba(0, 0, 0, 0.5);
   background: $faded-black;
   border: none;
   border-radius: 2px;
-  &:active, &:hover, &:focus{
-    border: none;
-    outline: none;
-  }
 }
-.navigation, .show-nav{
+.return-to-search{
+  position: relative;
+  top: 1px;
+  margin-left: 2px;
+  padding: 5px;
+  width: 15px;
+  height: 15px;
+  z-index: 4000;
+  background: $faded-black;
+  border-radius: 2px;
+  color: white;
+}
+.navigation{
   position: fixed;
+  overflow: hidden;
+  z-index: 3000;
   top: 2px;
   right: 2px;
-  padding: 3px;
+  width: 25px;
+  height: 25px;
   background: $faded-black;
   border: none;
   border-radius: 2px;
   font-family: $chivo;
   font-size: 1em;
   color: white;
+  a, button{
+    visibility: hidden;
+    float: right;
+    clear: right;
+    &:active, &:hover, &:focus{
+      background: none;
+    }
+  }
   a, a:visited, button{
-    display: block;
-    margin: 0;
+    margin-right: 10px;
     padding: 2px;
     color: white;
     text-decoration: none;
@@ -140,15 +215,33 @@ $faded-black: rgba(0, 0, 0, 0.5);
     font-family: $chivo;
     font-size: 1em;
   }
+  .choices{
+    width: 100%;
+    margin-top: 25px;
+  }
 }
-.navigation{
-  overflow: hidden;
-  visibility: hidden;
-  z-index: 3000;
-}
-.show-nav{
+.nav-button{
+  position: fixed;
+  top: 2px;
+  right: 2px;
+  padding: 5px;
+  width: 15px;
+  height: 15px;
   z-index: 4000;
+  background: none;
+  border-radius: 2px;
 }
 .wall-options{
   display: none;
+}
+
+button, input, i{
+  &:active, &:hover, &:focus{
+    border: none;
+    outline: none;
+  }
+  &:active, &:hover{
+    background: black;
+  }
+  transition: 0.2s;
 }

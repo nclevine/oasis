@@ -2,10 +2,8 @@
 $averia: 'Averia Serif Libre', serif;
 $chivo: 'Chivo', sans-serif;
 $faded-white: rgba(256, 256, 256, 0.5);
-
-$welcome-button-font: white;
-$button-background: rgba(256,256,256,0.5);
-$title-color: white;
+$marsala: rgb(150, 79, 76);
+$pale-turquoise: rgb(127, 163, 161);
 
 body{
   margin: 0;
@@ -16,34 +14,42 @@ body{
 }
 
 .homepage{
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   z-index: 5000;
-  background: url(/assets/big-gertrude.jpg);
+  background: url(/assets/big_gertrude.jpg);
   background-size: cover;
   .title{
-    color: $title-color;
+    color: white;
     font-family: $averia;
     font-size: 7.5em;
     text-align: center;
   }
   .welcome{
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 350px;
     h1{
       text-align: center;
     }
+    .welcome-message{
+      font-size: 2.5em;
+      color: white;
+    }
     h2{
       margin: 0 auto;
-      padding: 10px;
-      font-size: 2em;
+      padding: 7px;
+      font-size: 1.5em;
       display: inline-block;
-      background: $button-background;
+      background: $faded-white;
       border-radius: 3px;
+      &:hover{
+        background: black;
+      }
+      transition: 0.2s;
     }
     a, a:visited{
-      color: $welcome-button-font;
+      color: white;
       text-decoration: none;
     }
     .login{
@@ -52,11 +58,85 @@ body{
     .signup{
       float: right;
     }
+    .logout{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px;
+      text-align: center;
+      font-size: 0.9em;
+      font-weight: normal;
+    }
+    .enter-salon{
+      display: block;
+      width: 62px;
+    }
+  }
+}
+
+.devise-form-page{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  background: url(/assets/blue_rothko.jpg) center;
+  background-size: cover;
+  color: $pale-turquoise;
+  font-size: 1.7em;
+  h2{
+    margin-top: 10%;
+    color: $marsala;
+    font-family: $averia;
+    font-size: 2em;
+    text-align: center;
+  }
+  .devise-form{
+    margin: 0 auto;
+    width: 250px;
+    input{
+      margin-bottom: 15px;
+      width: 100%;
+      font-family: $chivo;
+      font-size: 1em;
+      border: none;
+      border-radius: 2px;
+      background: rgba(127, 163, 161, 0.5);
+      color: #ddd;
+    }
+    input[type=submit]{
+      width: auto;
+      &:hover{
+        background: $pale-turquoise;
+      }
+    }
+    a{
+      display: inline;
+      font-size: 0.8em;
+    }
+    a, a:visited{
+      color: $pale-turquoise;
+      text-decoration: none;
+    }
+    a:hover{
+      color: #ddd;
+    }
+    em{
+      font-style: italic;
+      font-size: 0.7em;
+    }
+    .remember-me{
+      font-style: italic;
+      font-size: 0.7em;
+      input, label{
+        width: auto;
+        display: inline;
+      }
+    }
   }
 }
 
 .profile{
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   .new-space-form{

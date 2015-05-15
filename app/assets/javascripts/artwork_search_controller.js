@@ -27,7 +27,7 @@ function loadImageInspector(image){
   var $itemInfo = $("<div class='item-info'></div>")
   $imageInspector.append($itemInfo);
   if(image.data('museum') == 'tumblr'){
-    $itemInfo.append("<h2>Title: <input class='tumblr-title-input-" + image.prop('id') + "' type='text' placeholder='Name This Tumblr Post'></h2>");
+    $itemInfo.append("<h2>Title: <input class='tumblr-title-input-" + image.prop('id') + "' type='text' placeholder='Name this tumblr post...'></h2>");
     $itemInfo.append("<h2>Blog: <span>" + image.data('artist') + "</span></h2>")
   } else{
     $itemInfo.append("<h2>Title: <span>" + image.data("title") + "</span></h2>");

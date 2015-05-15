@@ -6,7 +6,8 @@
       <h2 class='login'><%= link_to "Log In", new_user_session_path %></h2>
       <h2 class='signup'><%= link_to "Sign Up", new_user_registration_path %></h2>
     <% else %>
-      <h1 class='welcome-message'><%= link_to @welcome_message, current_user %></h1>
+      <h1 class='welcome-message'><%= @welcome_message %></h1>
+      <h2 class='enter-salon'><%= link_to "Enter", current_user.space %></h2>
       <h2 class='logout'><%= link_to "Log Out", destroy_user_session_path, method: :delete %></h2>
     <% end %>
   </div>
