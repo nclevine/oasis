@@ -43,7 +43,7 @@ function initialize(){
 
   $searchButton.on('click', function(){
     var source = $artworkSource.val();
-    var searchTerm = $searchTerm.val();
+    var searchTerm = $searchTerm.val().replace(/\s/g, '%20');
     if(source == 'met'){
       metCollectionSearch(searchTerm);
     } else if(source == 'vam'){
