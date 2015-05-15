@@ -1,9 +1,22 @@
+@import url(http://fonts.googleapis.com/css?family=Averia+Serif+Libre|Chivo);
+$averia: 'Averia Serif Libre', serif;
+$chivo: 'Chivo', sans-serif;
+$faded-black: rgba(0, 0, 0, 0.5);
+
 .artwork-search-panel{
   display: none;
+  position: fixed;
   width: 100%;
   height: 100%;
-  .art-search-input{
-    width: 250px;
+  background: white;
+  overflow: auto;
+  .artwork-search-form{
+    position: fixed;
+    top: 2px;
+    left: 2px;
+    .art-search-input{
+      width: 250px;
+    }
   }
   .results-container{
     width: 100%;
@@ -44,12 +57,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  .edit-tools{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3000;
-  }
+  background: white;
   img.salon{
     height: 100%;
     width: 100%
@@ -78,9 +86,6 @@
     background: white;
     border: 1px solid black;
   }
-  .exit-edit-mode, .exit-inspect-mode{
-    display: none;
-  }
   .hover-info{
     position: absolute;
     width: 200px;
@@ -91,4 +96,59 @@
     }
   }
 }
-
+.edit-tools{
+  position: fixed;
+  top: 2px;
+  left: 2px;
+  z-index: 3000;
+  .exit-edit-mode, .exit-inspect-mode, .zoom-in{
+    display: none;
+  }
+}
+.edit-tools button, .artwork-search-form button, .artwork-search-form input{
+  padding: 3px;
+  font-family: $chivo;
+  font-size: 1em;
+  color: white;
+  background: $faded-black;
+  border: none;
+  border-radius: 2px;
+  &:active, &:hover, &:focus{
+    border: none;
+    outline: none;
+  }
+}
+.navigation, .show-nav{
+  position: fixed;
+  top: 2px;
+  right: 2px;
+  padding: 3px;
+  background: $faded-black;
+  border: none;
+  border-radius: 2px;
+  font-family: $chivo;
+  font-size: 1em;
+  color: white;
+  a, a:visited, button{
+    display: block;
+    margin: 0;
+    padding: 2px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    background: none;
+    font-family: $chivo;
+    font-size: 1em;
+  }
+}
+.navigation{
+  overflow: hidden;
+  visibility: hidden;
+  z-index: 3000;
+}
+.show-nav{
+  z-index: 4000;
+}
+.wall-options{
+  display: none;
+}

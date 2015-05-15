@@ -1,4 +1,5 @@
 var $artworkEditor;
+var $editorTools;
 var $resizeHandles;
 var artworkCollection;
 var salonWall;
@@ -21,6 +22,7 @@ $(document).on('page:load', initialize);
 
 function initialize(){
   $artworkEditor = $('.artwork-edit-panel');
+  $editorTools = $('.edit-tools');
   $resizeHandles = $('.ui-resizable-handle');
   $artworkSearchPanel = $('.artwork-search-panel');
   $searchTerm = $('.art-search-input');
@@ -32,7 +34,7 @@ function initialize(){
   $loading = $('.loading');
   $navigation = $('.navigation');
   $showNav = $('.show-nav');
-  $newSpaceForm = $('.new_space');
+  $newSpaceForm = $('.new-space-form');
   $('.new-space-form-show').on('click', function(){
     $newSpaceForm.css("visibility", "visible");
   });
@@ -62,6 +64,7 @@ function initialize(){
   $showSalonWall.on('click', function(){
     $artworkSearchPanel.css("display", "none");
     $artworkEditor.css('display', 'block');
+    $editorTools.css('display', 'block');
     TweenMax.to($artworkEditor, 0.2, {autoAlpha: 1});
   });
 

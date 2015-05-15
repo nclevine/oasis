@@ -1,9 +1,13 @@
-<h1 id='title'>Welcome To The Oasis</h1>
+<div class='homepage'>
+  <h1 class='title'>Art Oasis</h1>
 
-<% if !user_signed_in? %>
-  <%= link_to "Log In", new_user_session_path %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-<% else %>
-  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-  <h1><%= current_user.email %></h1>
-<% end %>
+  <div class='welcome'>
+    <% if !user_signed_in? %>
+      <h2 class='login'><%= link_to "Log In", new_user_session_path %></h2>
+      <h2 class='signup'><%= link_to "Sign Up", new_user_registration_path %></h2>
+    <% else %>
+      <h1 class='welcome-message'><%= link_to @welcome_message, current_user %></h1>
+      <h2 class='logout'><%= link_to "Log Out", destroy_user_session_path, method: :delete %></h2>
+    <% end %>
+  </div>
+</div>

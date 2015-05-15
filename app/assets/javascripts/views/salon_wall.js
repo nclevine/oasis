@@ -54,7 +54,8 @@ SalonWall.prototype = {
       autoScroll: 1
     }));
     $('.ui-resizable-handle').attr('data-clickable', true);
-    $artworkEditor.css('display', 'block')
+    $artworkEditor.css('display', 'block');
+    $editorTools.css('display', 'block');
     $artworkSearchPanel.css("display", "none");
     this.enterEditMode();
     TweenMax.to($artworkEditor, 0.1, {autoAlpha: 1});
@@ -146,25 +147,21 @@ SalonWall.prototype = {
     if(searchResults){
       $returnToSearch.text('Return To Search');
     };
-    var $enterEditMode = $('.enter-edit-mode');
-    var $exitEditMode = $('.exit-edit-mode');
-    var $saveSalonWall = $('.save-salon-wall');
-    var $enterInspectMode = $('.enter-inspect-mode');
-    var $exitInspectMode = $('.exit-inspect-mode');
-    $returnToSearch.on('click', function(){
-      $artworkSearchPanel.css("display", "block");
-      $resultsContainer.css("opacity", 1);
-      $imageInspector.css("visibility", "hidden");
-      TweenMax.to($artworkEditor, 0.1, {autoAlpha: 0});
-      window.setTimeout(function(){
-        $artworkEditor.css('display', 'none')
-      }, 100);
-    });
+    var $enterEditMode = $('.enter-edit-mode'),
+      $exitEditMode = $('.exit-edit-mode'),
+      $saveSalonWall = $('.save-salon-wall'),
+      $enterInspectMode = $('.enter-inspect-mode'),
+      $exitInspectMode = $('.exit-inspect-mode'),
+      $zoomOut = $('.zoom-out'),
+      $zoomIn = $('.zoom-in');
+    $returnToSearch.on('click', this.returnToSearch);
     $enterEditMode.on('click', this.enterEditMode);
     $exitEditMode.on('click', this.exitEditMode);
     $saveSalonWall.on('click', this.saveWall);
     $enterInspectMode.on('click', this.enterInspectMode);
     $exitInspectMode.on('click', this.exitInspectMode);
+    $zoomOut.on('click', this.zoomOut);
+    $zoomIn.on('click', this.zoomIn);
   },
   enterInspectMode: function(){
     $('.enter-inspect-mode').css('display', 'none');
@@ -208,6 +205,28 @@ SalonWall.prototype = {
     var $salonImages = $('.salon'); 
     $($salonImages.parents()).off();
     $('.hover-info').remove();
+  },
+  returnToSearch: function(){
+    $editorTools.css('display', 'none');
+    $artworkSearchPanel.css("display", "block");
+    $resultsContainer.css("opacity", 1);
+    $imageInspector.css("visibility", "hidden");
+    TweenMax.to($artworkEditor, 0.1, {autoAlpha: 0});
+    window.setTimeout(function(){
+      $artworkEditor.css('display', 'none')
+    }, 100);
+  },
+  zoomOut: function(){
+    $('.zoom-out').css('display', 'none');
+    $('.zoom-in').css('display', 'inline-block');
+    var fitScale = window.innerWidth / $artworkEditor.width();
+    TweenMax.to(window, 0.5, {scrollTo: {x:0, y:0}});
+    TweenMax.to($artworkEditor, 1, {scaleX: fitScale, scaleY: fitScale, transformOrigin: 'left top'});
+  },
+  zoomIn: function(){
+    $('.zoom-in').css('display', 'none');
+    $('.zoom-out').css('display', 'inline-block');
+    TweenMax.to($artworkEditor, 1, {scaleX: 1, scaleY: 1});
   }
 };
 

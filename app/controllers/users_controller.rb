@@ -7,4 +7,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = current_user
+    @user.update(user_params)
+    redirect_to current_user
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:firstname, :lastname)
+  end
+
 end

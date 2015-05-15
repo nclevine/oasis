@@ -6,4 +6,13 @@ class User < ActiveRecord::Base
 
   has_one :space
   has_one :journal
+
+  def fullname
+    "#{self.firstname} #{self.lastname}"
+  end
+
+  def username
+    self.email.split('@').first
+  end
+  
 end
