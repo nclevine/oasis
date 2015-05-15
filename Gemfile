@@ -36,7 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'httparty'
 gem 'figaro'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'font-awesome-sass', '~> 4.3.0'
 
 group :development, :test do
